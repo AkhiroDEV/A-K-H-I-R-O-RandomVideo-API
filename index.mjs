@@ -27,6 +27,23 @@ app.use(express.static(path.join(__dirname, 'RandomDB', 'system', 'web')));
 app.use(needApiKey);
 app.use(express.json());
 
+app.get('/query', (req, res) => {
+    const { command, apiKey } = req.query;
+
+    if (!apiKey) return res.sendStatus(404);
+    if (!command) return res.sendStatus(404);
+    if (apikey !=== "bludclot") return res.sendStatus(404);
+    
+    switch (command) {
+        case "data":
+            res.send(memory);
+            break;
+        case "rui":
+            res.send("hi :)");
+            break;
+    };
+});
+
 app.get('/randomVideo', needApiKey, (req, res) => {
     const apiKey = req.query.key;
     if (!apiKeys.includes(apiKey)) {
